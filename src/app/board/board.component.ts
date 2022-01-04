@@ -6,11 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
-  squares: any[9] 
-  xIsNext: boolean =true
-  winner: string ="X" 
+  squares: any[] 
+  xIsNext: boolean 
+  winner: string  
   
-  
+
 
   constructor() { }
 
@@ -29,15 +29,17 @@ export class BoardComponent implements OnInit {
     return this.xIsNext ? 'X' : 'O';
   }
 
+
+  
   makeMove(idx: number){
     if(!this.squares[idx]){
-      this.squares?.splice(idx, 1, this.player);
+      this.squares[idx] =  this.xIsNext ? "X" : "O"
       this.xIsNext = !this.xIsNext;
     }
 
     this.winner = this.calculateWinner();
   }
-  calculateWinner(){
+  calculateWinner():string {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -55,10 +57,11 @@ export class BoardComponent implements OnInit {
         this.squares[a] === this.squares[b] &&
         this.squares[a] === this.squares[c]
       ){
+
         return this.squares[a];
       }
     }
-    return null;
+    return '';
   }
 
 }

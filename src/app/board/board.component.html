@@ -1,14 +1,22 @@
 <h1>Current Player: {{player}} </h1>
 
-<button (click)="newGame()">Start  New Game</button>
 <h2 *ngIf="winner">
-    Player {{player}} won the game!
+    Player {{winner}} won the game!
 </h2>
 
-<main>
-    <app-square *ngFor="let val of squares; let i= index"
+
+<section *ngIf="winner==''; else other_content">
+    <div class="box" *ngFor="let val of squares; let i= index"
     (value)="val"
     (click)="makeMove(i)">
-        
-    </app-square>
-</main>
+    {{val}}
+    </div>
+  
+</section>
+<ng-template #other_content>
+    <button (click)="newGame()">    התחל משחק חדש
+    </button>
+</ng-template>
+
+
+
